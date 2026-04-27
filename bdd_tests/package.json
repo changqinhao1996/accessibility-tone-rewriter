@@ -1,16 +1,22 @@
 {
   "name": "bdd_tests",
   "version": "1.0.0",
-  "description": "",
+  "description": "Acceptance tests for Access & Tone Rewriter",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "cucumber-js",
+    "test:report": "cucumber-js --format html:reports/cucumber-report.html"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "@cucumber/cucumber": "^12.7.0",
-    "@playwright/test": "^1.59.1"
+    "@playwright/test": "^1.59.1",
+    "@types/node": "^22.0.0",
+    "@types/pg": "^8.20.0",
+    "pg": "^8.20.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.0"
   }
 }

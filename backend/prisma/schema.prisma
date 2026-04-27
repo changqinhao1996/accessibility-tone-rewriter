@@ -1,7 +1,5 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Get a free hosted Postgres database in seconds: `npx create-db`
+// Prisma schema for Access & Tone Rewriter
+// UC1: RewriteContentForTargetAudience
 
 generator client {
   provider = "prisma-client"
@@ -10,4 +8,43 @@ generator client {
 
 datasource db {
   provider = "postgresql"
+}
+
+model Session {
+  id        String     @id @default(uuid())
+  userId    String
+  active    Boolean    @default(true)
+  createdAt DateTime   @default(now())
+  documents Document[]
+}
+
+model Document {
+  id              String           @id @default(uuid())
+  sessionId       String
+  sourceText      String
+  createdAt       DateTime         @default(now())
+  session         Session          @relation(fields: [sessionId], references: [id])
+  rewriteRequests RewriteRequest[]
+}
+
+model AudienceProfile {
+  id              String           @id @default(uuid())
+  name            String           @unique
+  linguisticRules Json
+  rewriteRequests RewriteRequest[]
+}
+
+model RewriteRequest {
+  id                   String          @id @default(uuid())
+  documentId           String
+  audienceProfileId    String
+  targetGradeLevel     Int
+  rewrittenText        String?
+  calculatedGradeLevel Float?
+  ambiguityFlag        Boolean         @default(false)
+  latencyMs            Int?
+  status               String
+  createdAt            DateTime        @default(now())
+  document             Document        @relation(fields: [documentId], references: [id])
+  audienceProfile      AudienceProfile @relation(fields: [audienceProfileId], references: [id])
 }

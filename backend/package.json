@@ -1,28 +1,38 @@
 {
   "name": "access-tone-rewriter-backend",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Access & Tone Rewriter - Backend API",
+  "main": "dist/src/server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "ts-node src/server.ts",
+    "start:test": "ts-node src/testServer.ts",
+    "build": "tsc",
+    "migrate": "npx prisma migrate dev",
+    "seed": "ts-node prisma/seed.ts",
+    "test": "echo \"Use bdd_tests to run acceptance tests\""
+  },
+  "prisma": {
+    "seed": "ts-node prisma/seed.ts"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@prisma/adapter-pg": "^7.8.0",
     "@prisma/client": "^7.6.0",
     "cors": "^2.8.6",
     "dotenv": "^17.4.1",
-    "express": "^5.2.1"
+    "express": "^5.2.1",
+    "pg": "^8.20.0"
   },
   "devDependencies": {
-    "@cucumber/cucumber": "^12.7.0",
-    "@playwright/test": "^1.59.1",
     "@types/cors": "^2.8.19",
     "@types/express": "^5.0.6",
     "@types/node": "^25.5.2",
+    "@types/pg": "^8.20.0",
     "prisma": "^7.6.0",
     "ts-node": "^10.9.2",
+    "tsx": "^4.21.0",
     "typescript": "^6.0.2"
   }
 }
