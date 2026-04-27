@@ -1,5 +1,7 @@
 // Prisma schema for Access & Tone Rewriter
 // UC1: RewriteContentForTargetAudience
+// UC2: GenerateImageAltText
+// UC3: AuditDocumentForAccessibility
 
 generator client {
   provider = "prisma-client"
@@ -25,6 +27,8 @@ model Document {
   createdAt       DateTime         @default(now())
   session         Session          @relation(fields: [sessionId], references: [id])
   rewriteRequests RewriteRequest[]
+  images          DocumentImage[]
+  auditReports    AuditReport[]
 }
 
 model AudienceProfile {
@@ -47,4 +51,58 @@ model RewriteRequest {
   createdAt            DateTime        @default(now())
   document             Document        @relation(fields: [documentId], references: [id])
   audienceProfile      AudienceProfile @relation(fields: [audienceProfileId], references: [id])
+}
+
+// ── UC2: GenerateImageAltText ────────────────────────────────
+
+model DocumentImage {
+  id             String         @id @default(uuid())
+  documentId     String
+  filename       String
+  complexityFlag Boolean        @default(false)
+  hasAltText     Boolean        @default(false)
+  createdAt      DateTime       @default(now())
+  document       Document       @relation(fields: [documentId], references: [id])
+  altTexts       ImageAltText[]
+}
+
+model ImageAltText {
+  id            String        @id @default(uuid())
+  imageId       String
+  altText       String?
+  wcagCompliant Boolean       @default(false)
+  approved      Boolean       @default(false)
+  status        String
+  createdAt     DateTime      @default(now())
+  image         DocumentImage @relation(fields: [imageId], references: [id])
+}
+
+// ── UC3: AuditDocumentForAccessibility ──────────────────────
+
+model Guideline {
+  id          String   @id @default(uuid())
+  ruleId      String   @unique
+  description String
+  version     String
+  createdAt   DateTime @default(now())
+}
+
+model AuditReport {
+  id                String           @id @default(uuid())
+  documentId        String
+  guidelinesVersion String
+  status            String
+  createdAt         DateTime         @default(now())
+  document          Document         @relation(fields: [documentId], references: [id])
+  violations        AuditViolation[]
+}
+
+model AuditViolation {
+  id            String      @id @default(uuid())
+  auditReportId String
+  ruleId        String
+  severity      String
+  description   String
+  createdAt     DateTime    @default(now())
+  auditReport   AuditReport @relation(fields: [auditReportId], references: [id])
 }

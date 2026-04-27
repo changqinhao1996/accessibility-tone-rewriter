@@ -65,8 +65,9 @@ export function createRewriteRouter(
     try {
       const session = await prisma.session.findFirst({
         where: { active: true },
-        orderBy: { createdAt: "desc" },
+        orderBy: { createdAt: "asc" },
       });
+
 
       if (!session) {
         res.status(404).json({ error: "No active session found" });
@@ -75,8 +76,9 @@ export function createRewriteRouter(
 
       const document = await prisma.document.findFirst({
         where: { sessionId: session.id },
-        orderBy: { createdAt: "desc" },
+        orderBy: { createdAt: "asc" },
       });
+
 
       if (!document) {
         res.status(404).json({ error: "No document found" });

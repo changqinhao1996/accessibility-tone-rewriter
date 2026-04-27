@@ -1,4 +1,6 @@
+@uc1
 Feature: UC1 - Rewrite Content For Target Audience
+
 
   Background:
     Given the ContentDesigner is logged in

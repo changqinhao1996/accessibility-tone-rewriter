@@ -1,0 +1,251 @@
+.audit-container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f3e8ff 0%, #e8f5e9 100%);
+  font-family: 'Inter', 'Segoe UI', sans-serif;
+  color: #1a1a2e;
+}
+
+.audit-header {
+  text-align: center;
+  padding: 2.5rem 1rem 1.5rem;
+}
+
+.audit-header h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #1a1a2e;
+  margin: 0 0 0.4rem;
+}
+
+.audit-header .subtitle {
+  color: #555;
+  font-size: 1rem;
+  margin: 0;
+}
+
+.audit-main {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 1.5rem 3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* ── Trigger ──────────────────────────────────────────────── */
+
+.audit-trigger-section {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+}
+
+.audit-button {
+  background: linear-gradient(135deg, #7b2ff7, #4a90e2);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 0.7rem 1.8rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.2s, transform 0.15s;
+}
+
+.audit-button:hover:not(:disabled) {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+.audit-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.document-id-label {
+  font-size: 0.85rem;
+  color: #666;
+}
+
+.document-id-label code {
+  background: #f0f0f0;
+  padding: 0.2rem 0.45rem;
+  border-radius: 4px;
+  font-size: 0.82rem;
+}
+
+/* ── Errors ───────────────────────────────────────────────── */
+
+.error-message {
+  border-radius: 10px;
+  padding: 1rem 1.2rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.error-icon {
+  font-size: 1.2rem;
+  flex-shrink: 0;
+}
+
+.error-no-doc {
+  background: #fce4ec;
+  border: 1.5px solid #ef9a9a;
+  color: #7b1c2e;
+}
+
+.error-server {
+  background: #fff3e0;
+  border: 1.5px solid #ffb74d;
+  color: #7b3f00;
+}
+
+/* ── Audit Report ─────────────────────────────────────────── */
+
+.audit-report {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+}
+
+.audit-summary {
+  padding: 1.5rem 1.8rem 1rem;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.audit-summary h2 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #1a1a2e;
+  margin: 0 0 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.guidelines-version {
+  font-size: 0.75rem;
+  font-weight: 500;
+  background: #ede7f6;
+  color: #6a1b9a;
+  padding: 0.2rem 0.6rem;
+  border-radius: 12px;
+}
+
+.summary-counts {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.count-badge {
+  font-size: 0.82rem;
+  font-weight: 600;
+  padding: 0.3rem 0.75rem;
+  border-radius: 20px;
+}
+
+.count-badge.critical {
+  background: #fce4ec;
+  color: #b71c1c;
+  border: 1px solid #ef9a9a;
+}
+
+.count-badge.serious {
+  background: #fff3e0;
+  color: #e65100;
+  border: 1px solid #ffb74d;
+}
+
+.count-badge.minor {
+  background: #e8f5e9;
+  color: #1b5e20;
+  border: 1px solid #81c784;
+}
+
+/* ── No Violations ────────────────────────────────────────── */
+
+.no-violations {
+  padding: 2rem 1.8rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.95rem;
+  color: #2e7d32;
+  font-weight: 500;
+}
+
+.check-icon {
+  font-size: 1.4rem;
+}
+
+/* ── Violation List ───────────────────────────────────────── */
+
+.violation-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.violation-item {
+  padding: 1.1rem 1.8rem;
+  border-bottom: 1px solid #f5f5f5;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.violation-item:last-child {
+  border-bottom: none;
+}
+
+.violation-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.severity-badge {
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 0.2rem 0.65rem;
+  border-radius: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.severity-badge.critical {
+  background: #b71c1c;
+  color: white;
+}
+
+.severity-badge.serious {
+  background: #e65100;
+  color: white;
+}
+
+.severity-badge.minor {
+  background: #388e3c;
+  color: white;
+}
+
+.rule-id {
+  font-size: 0.82rem;
+  color: #6a1b9a;
+  background: #f3e8ff;
+  padding: 0.15rem 0.5rem;
+  border-radius: 4px;
+}
+
+.violation-description {
+  font-size: 0.9rem;
+  color: #444;
+  margin: 0;
+  line-height: 1.5;
+}
